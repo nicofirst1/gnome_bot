@@ -20,9 +20,12 @@ def run():
     setting_lst=[]
     setting_lst.append(pave_event_space()(per_chat_id(), create_open, gnomo, timeout=100))
     bot = telepot.DelegatorBot(TOKEN, setting_lst)
-    bot.setWebhook(URL + SECRET)
+
     app.run(host='0.0.0.0', port=PORT, debug=True)
+    bot.setWebhook()
+    bot.setWebhook(URL + SECRET)
     bot.message_loop(source=update_queue)
+
 
 
 
