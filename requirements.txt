@@ -14,7 +14,6 @@ click==6.6
 climate==0.4.6
 cookiecutter==1.4.0
 cookiejar==0.0.1
-CVXcanon==0.1.1
 cvxpy==0.4.8
 cycler==0.10.0
 Cython==0.25.2
@@ -49,7 +48,6 @@ multidict==3.1.0
 multiprocess==0.70.4
 nltk==3.2.2
 npm==0.1.1
-numpy==1.11.2
 oauth2client==4.0.0
 optional-django==0.1.0
 pager==3.3
