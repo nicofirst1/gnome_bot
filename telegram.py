@@ -16,16 +16,22 @@ URL = "https://api.telegram.org/bot<"+TOKEN+"token>/"
 
 
 
-def run():
+def run2():
     setting_lst=[]
     setting_lst.append(pave_event_space()(per_chat_id(), create_open, gnomo, timeout=100))
     bot = telepot.DelegatorBot(TOKEN, setting_lst)
 
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+    app.run( port=PORT, debug=True)
     bot.setWebhook()
     bot.setWebhook(URL + SECRET)
     bot.message_loop(source=update_queue)
 
+
+def run():
+    setting_lst=[]
+    setting_lst.append(pave_event_space()(per_chat_id(), create_open, gnomo, timeout=1000))
+    bot = telepot.DelegatorBot(TOKEN, setting_lst)
+    bot.message_loop(run_forever="listening ...")
 
 
 
