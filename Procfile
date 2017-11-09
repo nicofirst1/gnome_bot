@@ -1,1 +1,1 @@
-web: node index.js
+worker: python inline_sample.py $TOKEN
