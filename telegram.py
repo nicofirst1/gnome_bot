@@ -2,14 +2,35 @@ import telepot
 from telepot.delegate import pave_event_space, per_chat_id, create_open
 import os
 from Util import calc_score, consigliami
+from queue import Queue
+from flask import Flask, request
+
+
 TOKEN="434893083:AAG2B6rXCMAi9p1zl2bQYZfqAqdmmnVZvQU"
+PORT = int(os.environ.get('PORT', 5000))
+#TOKEN = os.environ['PP_BOT_TOKEN']  # put your token in heroku app as environment variable
+SECRET = '/bot' + TOKEN
+update_queue = Queue()
+app = Flask(__name__)
+URL = " "
+
+
 
 def run():
     setting_lst=[]
-    setting_lst.append(pave_event_space()(per_chat_id(), create_open, gnomo, timeout=1000))
+    setting_lst.append(pave_event_space()(per_chat_id(), create_open, gnomo, timeout=100))
     bot = telepot.DelegatorBot(TOKEN, setting_lst)
-    bot.message_loop(run_forever="listening ...")
+    bot.setWebhook()
+    bot.setWebhook(URL + SECRET)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
+    bot.message_loop(source=update_queue)
 
+
+
+@app.route( SECRET, methods=['GET', 'POST'])
+def pass_update():
+    update_queue.put(request.data)  # pass update to bot
+    return 'OK'
 
 class gnomo(telepot.helper.ChatHandler):
     def __init__(self, *args, **kwargs):
