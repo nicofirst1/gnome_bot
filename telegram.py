@@ -6,9 +6,8 @@ from queue import Queue
 from flask import Flask, request
 
 
-TOKEN="434893083:AAG2B6rXCMAi9p1zl2bQYZfqAqdmmnVZvQU"
 PORT = int(os.environ.get('PORT', 5000))
-#TOKEN = os.environ['PP_BOT_TOKEN']  # put your token in heroku app as environment variable
+TOKEN = os.environ['PP_BOT_TOKEN']  # put your token in heroku app as environment variable
 SECRET = '/bot' + TOKEN
 update_queue = Queue()
 app = Flask(__name__)
