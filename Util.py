@@ -4,11 +4,12 @@ import os, os.path
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from pandas.plotting import table
+from pandas.tools.plotting import table
+
 
 compare = lambda x, y: collections.Counter(x) == collections.Counter(y)
 
-hand = [2,2,2,5,4]
+hand = [2, 3 ,6 ,2 ,2]
 
 prob_dict = {
     "5Uguali": 6 / pow(6, 5),
@@ -265,7 +266,7 @@ def consigliami(hand):
             df.loc[i]=row
 
 
-    #print(df)
+    print(df)
     ax = plt.subplot(111, frame_on=False)  # no visible frame
     ax.xaxis.set_visible(False)  # hide the x axis
     ax.yaxis.set_visible(False)  # hide the y axis
@@ -279,7 +280,8 @@ def consigliami(hand):
     return path_save_name
 
 
-consigliami(hand)
+#print((1-calc_score(hand))*100)
+#consigliami(hand)
 
 
 
